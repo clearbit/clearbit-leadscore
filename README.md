@@ -35,9 +35,8 @@ There's also a Ruby API.
       puts "Company name: #{result.company.try(:name)}"
 
       if result.score > 0.5
-        puts "LeadScore"
+        puts "Baller"
       end
-
     else
       puts "Person or company not found"
     end
