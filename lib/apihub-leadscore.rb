@@ -1,0 +1,1 @@
+require 'apihub/lead_score'

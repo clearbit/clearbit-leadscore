@@ -21,4 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_dependency "apihub", "~> 0.0.5"
   spec.add_dependency "awesome_print"
+  spec.add_dependency "thread"
 end
