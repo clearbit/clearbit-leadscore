@@ -23,20 +23,22 @@ module APIHub
 
         return score unless result
 
-        if result.avatar
-          score += 5
-        end
+        if person = result.person
+          if person.avatar
+            score += 5
+          end
 
-        if result.twitter.followers
-          score += result.twitter.followers * options.twitter_followers_weight
-        end
+          if person.twitter.followers
+            score += person.twitter.followers * options.twitter_followers_weight
+          end
 
-        if result.angellist.followers
-          score += result.angellist * options.angellist_followers_weight
-        end
+          if person.angellist.followers
+            score += person.angellist.followers * options.angellist_followers_weight
+          end
 
-        if result.klout.score
-          score += result.klout.score * options.klout_score_weight
+          if person.klout.score
+            score += person.klout.score * options.klout_score_weight
+          end
         end
 
         if company = result.company

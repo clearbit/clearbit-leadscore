@@ -34,9 +34,15 @@ module APIHub
 
       return unless person || company
 
-      result = Mash.new(person || {})
-      result.merge!(company: company)
-      result.merge!(score: Score.calculate(result))
+      result = Mash.new(
+        person:  person,
+        company: company
+      )
+
+      result.merge!(
+        score: Score.calculate(result)
+      )
+
       result
     end
   end
