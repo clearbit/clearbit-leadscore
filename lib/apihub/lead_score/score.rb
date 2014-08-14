@@ -27,15 +27,15 @@ module APIHub
           score += 5
         end
 
-        if result.twitter
+        if result.twitter.followers
           score += result.twitter.followers * options.twitter_followers_weight
         end
 
-        if result.angellist
-          score += result.angellist.followers * options.angellist_followers_weight
+        if result.angellist.followers
+          score += result.angellist * options.angellist_followers_weight
         end
 
-        if result.klout && result.klout.score
+        if result.klout.score
           score += result.klout.score * options.klout_score_weight
         end
 
@@ -54,17 +54,17 @@ module APIHub
                       options.company_employees_weight
           end
 
-          if company.alexa && company.alexa.globalRank
+          if company.alexa.globalRank
             score += 1 / (company.alexa.globalRank *
                       options.company_alexa_rank_weight)
           end
 
-          if company.google && company.google.rank && company.google.rank > 0
+          if company.google.rank && company.google.rank > 0
             score += 1 / (company.google.rank *
                       options.company_google_rank_weight)
           end
 
-          if company.twitter
+          if company.twitter.followers
             score += company.twitter.followers *
                       options.company_twitter_followers_weight
           end
