@@ -1,4 +1,4 @@
-module APIHub
+module Clearbit
   module LeadScore
     module EmailProviders
       DOMAINS = %w{

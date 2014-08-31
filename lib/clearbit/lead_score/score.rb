@@ -1,4 +1,4 @@
-module APIHub
+module Clearbit
   module LeadScore
     module Score extend self
       attr_accessor :defaults

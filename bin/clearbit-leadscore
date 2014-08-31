@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'optparse'
-require 'apihub/lead_score'
+require 'clearbit/lead_score'
 
 begin
   require 'awesome_print'
@@ -16,7 +16,7 @@ options = {}
 options[:api_key] = ENV['APIHUB_KEY'] || ENV['BALLER_KEY']
 
 optparse = OptionParser.new do |opts|
-  opts.banner = "Usage: apihub-leadscore [options] email"
+  opts.banner = "Usage: clearbit-leadscore [options] email"
 
   opts.on("-k", "--api-key", "Set API Key") do |v|
     options[:api_key] = v
@@ -40,9 +40,9 @@ unless email = ARGV[0]
   exit
 end
 
-APIHub::LeadScore.api_key = options[:api_key]
+Clearbit::LeadScore.api_key = options[:api_key]
 
-if person = APIHub::LeadScore.lookup(email)
+if person = Clearbit::LeadScore.lookup(email)
   ap person
 
 else

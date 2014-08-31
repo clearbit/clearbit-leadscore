@@ -1,6 +1,6 @@
 require 'thread/pool'
 
-module APIHub
+module Clearbit
   module LeadScore
     class Async
       def self.instance

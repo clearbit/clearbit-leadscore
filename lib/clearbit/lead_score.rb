@@ -1,16 +1,16 @@
-require "apihub"
-require "apihub/lead_score/version"
+require "clearbit"
+require "clearbit/lead_score/version"
 
-require "apihub/lead_score/async"
-require "apihub/lead_score/email_providers"
-require "apihub/lead_score/score"
+require "clearbit/lead_score/async"
+require "clearbit/lead_score/email_providers"
+require "clearbit/lead_score/score"
 
-module APIHub
+module Clearbit
   module LeadScore extend self
-    include APIHub
+    include Clearbit
 
     def api_key=(value)
-      APIHub.api_key = value
+      Clearbit.api_key = value
     end
 
     def baller?(email, options = {})
