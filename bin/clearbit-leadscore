@@ -13,13 +13,13 @@ end
 
 options = {}
 
-options[:api_key] = ENV['APIHUB_KEY'] || ENV['BALLER_KEY']
+options[:key] = ENV['CLEARBIT_KEY'] || ENV['LEADSCORE_KEY']
 
 optparse = OptionParser.new do |opts|
   opts.banner = "Usage: clearbit-leadscore [options] email"
 
-  opts.on("-k", "--api-key", "Set API Key") do |v|
-    options[:api_key] = v
+  opts.on("-k", "--api-key [KEY]", "Set API Key") do |v|
+    options[:key] = v
   end
 
   opts.on("-h", "--help", "Display this screen") do |v|
@@ -30,7 +30,7 @@ end
 
 optparse.parse!
 
-unless options[:api_key]
+unless options[:key]
   puts optparse
   exit
 end
@@ -40,7 +40,7 @@ unless email = ARGV[0]
   exit
 end
 
-Clearbit::LeadScore.api_key = options[:api_key]
+Clearbit::LeadScore.key = options[:key]
 
 if person = Clearbit::LeadScore.lookup(email)
   ap person

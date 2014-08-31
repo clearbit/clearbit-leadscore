@@ -22,11 +22,11 @@ Then install the gem, `clearbit-leadscore`. A CLI is provided for simple email l
           -h, --help                       Display this screen
 
 
-    clearbit-leadscore --api-key APIHUB_KEY alex@alexmaccaw.com
+    clearbit-leadscore --api-key CLEARBIT_KEY alex@alexmaccaw.com
 
 There's also a Ruby API.
 
-    Clearbit::LeadScore.api_key = ENV['APIHUB_KEY']
+    Clearbit::LeadScore.api_key = ENV['CLEARBIT_KEY']
 
     result = Clearbit::LeadScore.lookup(email)
 

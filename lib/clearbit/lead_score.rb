@@ -9,8 +9,8 @@ module Clearbit
   module LeadScore extend self
     include Clearbit
 
-    def api_key=(value)
-      Clearbit.api_key = value
+    def key=(value)
+      Clearbit.key = value
     end
 
     def baller?(email, options = {})
