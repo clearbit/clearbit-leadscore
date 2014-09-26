@@ -4,14 +4,14 @@ module Clearbit
       attr_accessor :defaults
 
       self.defaults = Mash.new({
-        twitter_followers_weight:   0.05,
+        twitter_followers_weight:   0.09,
         angellist_followers_weight: 0.05,
         klout_score_weight:         0.05,
         company_twitter_followers_weight: 0.05,
         company_alexa_rank_weight:  0.000005,
         company_google_rank_weight: 0.05,
         company_employees_weight:   0.5,
-        company_raised_weight:      0.0000005,
+        company_raised_weight:      0.00005,
         company_score:              10,
         total_score:                1415
       })
