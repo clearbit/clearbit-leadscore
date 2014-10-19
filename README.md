@@ -31,7 +31,7 @@ There's also a Ruby API.
     result = Clearbit::LeadScore.lookup(email)
 
     if result
-      puts "Name: #{result.name}"
+      puts "Name: #{result.person.try(:name)}"
       puts "Company name: #{result.company.try(:name)}"
 
       if result.score > 0.5

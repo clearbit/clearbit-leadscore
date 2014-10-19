@@ -13,15 +13,23 @@ module Clearbit
       Clearbit.key = value
     end
 
-    def baller?(email, options = {})
-      threshold = options[:threshold] || 20
+    def baller?(email, threshold = 0.7)
+      score(email) > threshold
+    end
 
-      lookup(options).score > threshold
+    def score(email)
+      result = lookup(email)
+      result && result.score || 0
     end
 
     def lookup(email)
       if email =~ /.+@.+/
-        person = Streaming::Person[email: email]
+        person  = Streaming::Person[email: email]
+
+        if person && person.company && person.company != {}
+          company = person.company
+        end
+
         suffix, domain = email.split('@', 2)
 
       else
@@ -29,7 +37,7 @@ module Clearbit
       end
 
       unless EmailProviders::DOMAINS.include?(domain)
-        company = Streaming::Company[domain: domain]
+        company ||= Streaming::Company[domain: domain]
       end
 
       return unless person || company
@@ -39,9 +47,14 @@ module Clearbit
         company: company
       )
 
-      result.merge!(
-        score: Score.calculate(result)
-      )
+      begin
+        result.merge!(
+          score: Score.calculate(result)
+        )
+      rescue => e
+        p result
+        raise e
+      end
 
       result
     end
