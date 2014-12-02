@@ -27,7 +27,7 @@ module Clearbit
         person  = Streaming::Person[email: email]
 
         if person && person.company && person.company != {}
-          company = person.company
+          company = person.delete(:company)
         end
 
         suffix, domain = email.split('@', 2)
@@ -47,14 +47,9 @@ module Clearbit
         company: company
       )
 
-      begin
-        result.merge!(
-          score: Score.calculate(result)
-        )
-      rescue => e
-        p result
-        raise e
-      end
+      result.merge!(
+        score: Score.calculate(result)
+      )
 
       result
     end
