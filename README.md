@@ -46,6 +46,10 @@ There's also a Ruby API.
 
 As well as just passing an email, there are a number of additional options you can send to `Clearbit::LeadScore.lookup`, such as the weights that are used internally. You could also just use the information returned to calculate your own score.
 
+This method uses the [Clearbit Streaming API](https://clearbit.com/docs#streaming) which is especially useful if you're making long-lived requests (i.e. you’re making requests to Clearbit from a messaging queue).
+
+This method returns a hash with **both** person and company data, assuming data for both are available. Otherwise, `result.person` or `result.company` will return `nil`
+
 The default options are:
 
     {
