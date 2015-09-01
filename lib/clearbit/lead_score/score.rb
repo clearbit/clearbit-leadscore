@@ -56,13 +56,13 @@ module Clearbit
                       options.company_employees_weight
           end
 
-          if company.alexa.globalRank
-            score += 1 / (company.alexa.globalRank *
+          if company.metrics.alexaGlobalRank
+            score += 1 / (company.metrics.alexaGlobalRank *
                       options.company_alexa_rank_weight)
           end
 
-          if company.google.rank && company.google.rank > 0
-            score += 1 / (company.google.rank *
+          if company.metrics.googleRank && company.metrics.googleRank > 0
+            score += 1 / (company.metrics.googleRank *
                       options.company_google_rank_weight)
           end
 
