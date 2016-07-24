@@ -61,7 +61,7 @@ module Clearbit
                       options.company_alexa_rank_weight)
           end
 
-          if company.google.rank && company.google.rank > 0
+          if company.google and company.google.rank && company.google.rank > 0
             score += 1 / (company.google.rank *
                       options.company_google_rank_weight)
           end
