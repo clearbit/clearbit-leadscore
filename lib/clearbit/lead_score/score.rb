@@ -36,7 +36,7 @@ module Clearbit
             score += person.angellist.followers * options.angellist_followers_weight
           end
 
-          if person.klout.score
+          if person.klout and person.klout.score
             score += person.klout.score * options.klout_score_weight
           end
         end
