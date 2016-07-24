@@ -32,7 +32,7 @@ module Clearbit
             score += person.twitter.followers * options.twitter_followers_weight
           end
 
-          if person.angellist.followers
+          if person.angellist and person.angellist.followers
             score += person.angellist.followers * options.angellist_followers_weight
           end
 
