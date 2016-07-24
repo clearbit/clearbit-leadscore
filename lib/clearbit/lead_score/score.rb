@@ -32,11 +32,11 @@ module Clearbit
             score += person.twitter.followers * options.twitter_followers_weight
           end
 
-          if person.angellist.followers
+          if person.angellist and person.angellist.followers
             score += person.angellist.followers * options.angellist_followers_weight
           end
 
-          if person.klout.score
+          if person.klout and person.klout.score
             score += person.klout.score * options.klout_score_weight
           end
         end
@@ -56,12 +56,12 @@ module Clearbit
                       options.company_employees_weight
           end
 
-          if company.alexa.globalRank
+          if company.alexa and company.alexa.globalRank
             score += 1 / (company.alexa.globalRank *
                       options.company_alexa_rank_weight)
           end
 
-          if company.google.rank && company.google.rank > 0
+          if company.google and company.google.rank && company.google.rank > 0
             score += 1 / (company.google.rank *
                       options.company_google_rank_weight)
           end
