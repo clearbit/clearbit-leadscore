@@ -56,7 +56,7 @@ module Clearbit
                       options.company_employees_weight
           end
 
-          if company.alexa.globalRank
+          if company.alexa and company.alexa.globalRank
             score += 1 / (company.alexa.globalRank *
                       options.company_alexa_rank_weight)
           end
