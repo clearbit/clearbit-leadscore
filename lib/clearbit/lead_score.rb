@@ -24,7 +24,7 @@ module Clearbit
 
     def lookup(email)
       if email =~ /.+@.+/
-        person  = Streaming::Person[email: email]
+        person  = Clearbit::Enrichment::Person.find(email: email, stream: true)
 
         if person && person.company && person.company != {}
           company = person.delete(:company)
@@ -37,7 +37,8 @@ module Clearbit
       end
 
       unless EmailProviders::DOMAINS.include?(domain)
-        company ||= Streaming::Company[domain: domain]
+        company ||= Clearbit::Enrichment::Company.find(domain: domain, stream: true)
+
       end
 
       return unless person || company
