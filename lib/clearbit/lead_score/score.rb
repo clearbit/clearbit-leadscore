@@ -4,6 +4,7 @@ module Clearbit
       attr_accessor :defaults
 
       self.defaults = Mash.new({
+        github_followers_weight:   0.09,
         twitter_followers_weight:   0.09,
         angellist_followers_weight: 0.05,
         klout_score_weight:         0.05,
@@ -12,6 +13,7 @@ module Clearbit
         company_google_rank_weight: 0.05,
         company_employees_weight:   0.5,
         company_raised_weight:      0.00005,
+        company_annual_revenue_weight:  0.00005,
         company_score:              10,
         total_score:                1415
       })
@@ -28,15 +30,20 @@ module Clearbit
             score += 5
           end
 
-          if person.twitter.followers
+          #person.employment.seniority
+
+          if person.twitter && person.twitter.followers
             score += person.twitter.followers * options.twitter_followers_weight
           end
 
-          if person.angellist.followers
+          if person.github && person.github.followers
+            score += person.github.followers * options.github_followers_weight
+          end
+          if person.angellist && person.angellist.followers
             score += person.angellist.followers * options.angellist_followers_weight
           end
 
-          if person.klout.score
+          if person.klout && person.klout.score
             score += person.klout.score * options.klout_score_weight
           end
         end
@@ -56,16 +63,21 @@ module Clearbit
                       options.company_employees_weight
           end
 
-          if company.alexa.globalRank
-            score += 1 / (company.alexa.globalRank *
+          if company.metrics.alexaGlobalRank
+            score += 1 / (company.metrics.alexaGlobalRank *
                       options.company_alexa_rank_weight)
           end
 
-          if company.google.rank && company.google.rank > 0
-            score += 1 / (company.google.rank *
-                      options.company_google_rank_weight)
+          if company.metrics.annualRevenue && company.metrics.annualRevenue > 0
+            score += 1 / (company.metrics.annualRevenue *
+                      options.company_annual_revenue_weight)
           end
 
+          if company.metrics.googleRank && company.metrics.googleRank > 0
+            score += 1 / (company.metrics.googleRank *
+                      options.company_google_rank_weight)
+          end
+          
           if company.twitter.followers
             score += company.twitter.followers *
                       options.company_twitter_followers_weight
